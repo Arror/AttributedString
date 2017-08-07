@@ -22,9 +22,9 @@ public struct AttributedString {
         self.reference = NSMutableAttributedString(string: string, attributes: attributes)
     }
     
-    public subscript(_ range: Range<String.Index>) -> AttributedString? {
+    public subscript(_ range: Range<String.Index>) -> AttributedString {
         
-        guard let nsRange = NSRange(range, in: self.string) else { return nil }
+        guard let nsRange = NSRange(range, in: self.string) else { fatalError("Out of Range.") }
         
         return AttributedString(reference: self.reference.attributedSubstring(from: nsRange))
     }
