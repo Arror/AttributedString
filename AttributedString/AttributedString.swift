@@ -22,13 +22,6 @@ public struct AttributedString {
         self.reference = NSMutableAttributedString(string: string, attributes: attributes)
     }
     
-    public subscript(_ range: Range<String.Index>) -> AttributedString {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { fatalError("Out of Range.") }
-        
-        return AttributedString(reference: self.reference.attributedSubstring(from: nsRange))
-    }
-    
     public mutating func set(attributes: [NSAttributedStringKey: Any]?, in range: Range<String.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
@@ -60,6 +53,39 @@ public struct AttributedString {
     public var string: String {
         
         return self.reference.string
+    }
+}
+
+extension AttributedString {
+    
+    public subscript(_ range: Range<String.Index>) -> AttributedString {
+        
+        guard let nsRange = NSRange(range, in: self.string) else { fatalError("Out of Range.") }
+        
+        return AttributedString(reference: self.reference.attributedSubstring(from: nsRange))
+    }
+    
+    public subscript(_ range: PartialRangeUpTo<String.Index>) -> AttributedString {
+        
+        let r = self.string.startIndex..<range.upperBound
+        
+        return self[r]
+    }
+    
+    public subscript(_ range: PartialRangeFrom<String.Index>) -> AttributedString {
+        
+        let r = range.lowerBound..<self.string.endIndex
+        
+        return self[r]
+    }
+    
+    public subscript(_ range: PartialRangeThrough<String.Index>) -> AttributedString {
+        
+        let endIndex = self.string.index(self.string.startIndex, offsetBy: range.upperBound.encodedOffset + 1)
+        
+        let r = self.string.startIndex..<endIndex
+        
+        return self[r]
     }
 }
 
