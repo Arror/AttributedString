@@ -10,7 +10,7 @@ import Foundation
 
 public struct AttributedString {
     
-    private var reference: NSMutableAttributedString
+    private let reference: NSMutableAttributedString
     
     private init(reference: NSAttributedString) {
         
