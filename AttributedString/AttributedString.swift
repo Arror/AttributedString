@@ -22,21 +22,21 @@ public struct AttributedString {
         self.reference = NSMutableAttributedString(string: string, attributes: attributes)
     }
     
-    public mutating func set(attributes: [NSAttributedStringKey: Any]?, in range: Range<String.Index>) {
+    public mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<String.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.setAttributes(attributes, range: nsRange)
     }
     
-    public mutating func add(attribute key: NSAttributedStringKey, value: Any, in range: Range<String.Index>) {
+    public mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<String.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.addAttribute(key, value: value, range: nsRange)
     }
     
-    public mutating func add(attributes: [NSAttributedStringKey: Any], in range: Range<String.Index>) {
+    public mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<String.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
