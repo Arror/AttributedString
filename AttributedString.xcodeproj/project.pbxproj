@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70C8F9AE1F443CB9002AF9E1 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */; };
 		70D7135B1F36B6AF00E3EAA1 /* AttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 70D713591F36B6AF00E3EAA1 /* AttributedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70D713621F36B6FE00E3EAA1 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D713611F36B6FE00E3EAA1 /* AttributedString.swift */; };
 		70D8CD241F376072008C276C /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D8CD231F376072008C276C /* Range.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		70D713561F36B6AF00E3EAA1 /* AttributedString.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AttributedString.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D713591F36B6AF00E3EAA1 /* AttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributedString.h; sourceTree = "<group>"; };
 		70D7135A1F36B6AF00E3EAA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				70D713591F36B6AF00E3EAA1 /* AttributedString.h */,
 				70D713611F36B6FE00E3EAA1 /* AttributedString.swift */,
+				70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */,
 				70D8CD231F376072008C276C /* Range.swift */,
 				70D7135A1F36B6AF00E3EAA1 /* Info.plist */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C8F9AE1F443CB9002AF9E1 /* Attribute.swift in Sources */,
 				70D713621F36B6FE00E3EAA1 /* AttributedString.swift in Sources */,
 				70D8CD241F376072008C276C /* Range.swift in Sources */,
 			);
