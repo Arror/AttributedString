@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AttributedString {
+public struct AttributedString: Collection {
     
     private let reference: NSMutableAttributedString
     
@@ -22,28 +22,28 @@ public struct AttributedString {
         self.reference = NSMutableAttributedString(string: string, attributes: attributes)
     }
     
-    public mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<String.Index>) {
+    public mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.setAttributes(attributes, range: nsRange)
     }
     
-    public mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<String.Index>) {
+    public mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.addAttribute(key, value: value, range: nsRange)
     }
     
-    public mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<String.Index>) {
+    public mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.addAttributes(attributes, range: nsRange)
     }
     
-    public mutating func remove(attribute key: NSAttributedStringKey, range: Range<String.Index>) {
+    public mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
@@ -53,6 +53,35 @@ public struct AttributedString {
     public var string: String {
         
         return self.reference.string
+    }
+}
+
+extension AttributedString {
+    
+    public typealias Element = AttributedString
+    
+    public typealias SubSequence = AttributedString
+    
+    public typealias Index = String.Index
+    
+    public func index(after i: AttributedString.Index) -> AttributedString.Index {
+        
+        return self.string.index(after: i)
+    }
+    
+    public subscript(position: AttributedString.Index) -> AttributedString {
+        
+        return self[position..<position]
+    }
+    
+    public var startIndex: AttributedString.Index {
+        
+        return self.string.startIndex
+    }
+    
+    public var endIndex: AttributedString.Index {
+        
+        return self.string.endIndex
     }
 }
 
