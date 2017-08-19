@@ -50,12 +50,12 @@ public struct AttributedString: Collection {
         self.reference.removeAttribute(key, range: nsRange)
     }
     
-    public mutating func set(attributes: Attribute..., range: Range<String.Index>) {
+    public mutating func set(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
         self.set(attributes: attributes.nsAttributes, range: range)
     }
     
-    public mutating func remove(attribute: Attribute, range: Range<String.Index>) {
+    public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
         
         self.remove(attribute: attribute.key, range: range)
     }
