@@ -29,25 +29,35 @@ public struct AttributedString: Collection {
         self.reference.setAttributes(attributes, range: nsRange)
     }
     
-    public mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
+    mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.addAttribute(key, value: value, range: nsRange)
     }
     
-    public mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
+    mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.addAttributes(attributes, range: nsRange)
     }
     
-    public mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
+    mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
         
         guard let nsRange = NSRange(range, in: self.string) else { return }
         
         self.reference.removeAttribute(key, range: nsRange)
+    }
+    
+    public mutating func set(attributes: Attribute..., range: Range<String.Index>) {
+        
+        self.set(attributes: attributes.nsAttributes, range: range)
+    }
+    
+    public mutating func remove(attribute: Attribute, range: Range<String.Index>) {
+        
+        self.remove(attribute: attribute.key, range: range)
     }
     
     public var string: String {

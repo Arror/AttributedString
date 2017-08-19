@@ -126,3 +126,17 @@ public enum Attribute {
         }
     }
 }
+
+extension Collection where Self.Element == Attribute {
+    
+    var nsAttributes: [NSAttributedStringKey: Any] {
+        
+        var dict: [NSAttributedStringKey: Any] = [:]
+        
+        self.forEach { attribute in
+            dict[attribute.key] = attribute.value
+        }
+        
+        return dict
+    }
+}
