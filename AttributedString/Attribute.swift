@@ -10,7 +10,7 @@ import Foundation
 
 public enum Attribute {
     
-    case font(UIColor)
+    case font(UIFont)
     case paragraphStyle(NSParagraphStyle)
     case foregroundColor(UIColor)
     case backgroundColor(UIColor)
@@ -29,8 +29,8 @@ public enum Attribute {
     case strikethroughColor(UIColor)
     case obliqueness(Float)
     case expansion(Float)
-    case writingDirection(Any)
-    case verticalGlyphForm(Any)
+//    case writingDirection(Any)
+//    case verticalGlyphForm(Any)
     
     var key: NSAttributedStringKey {
         switch self {
@@ -72,10 +72,10 @@ public enum Attribute {
             return .obliqueness
         case .expansion:
             return .expansion
-        case .writingDirection:
-            return .writingDirection
-        case .verticalGlyphForm:
-            return .verticalGlyphForm
+//        case .writingDirection:
+//            return .writingDirection
+//        case .verticalGlyphForm:
+//            return .verticalGlyphForm
         }
     }
     
@@ -119,10 +119,10 @@ public enum Attribute {
             return v
         case .expansion(let v):
             return v
-        case .writingDirection(let v):
-            return v
-        case .verticalGlyphForm(let v):
-            return v
+//        case .writingDirection(let v):
+//            return v
+//        case .verticalGlyphForm(let v):
+//            return v
         }
     }
 }

@@ -12,42 +12,9 @@ public struct AttributedString: Collection {
     
     private let reference: NSMutableAttributedString
     
-    private init(reference: NSAttributedString) {
+    public init(string: String = "", attributes: Attribute...) {
         
-        self.reference = NSMutableAttributedString(attributedString: reference)
-    }
-    
-    public init(string: String = "", attributes: [NSAttributedStringKey: Any]? = nil) {
-        
-        self.reference = NSMutableAttributedString(string: string, attributes: attributes)
-    }
-    
-    public mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.setAttributes(attributes, range: nsRange)
-    }
-    
-    mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.addAttribute(key, value: value, range: nsRange)
-    }
-    
-    mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.addAttributes(attributes, range: nsRange)
-    }
-    
-    mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.removeAttribute(key, range: nsRange)
+        self.init(string: string, nsAttributes: attributes.nsAttributes)
     }
     
     public mutating func set(attributes: Attribute..., range: Range<AttributedString.Index>) {
@@ -63,35 +30,6 @@ public struct AttributedString: Collection {
     public var string: String {
         
         return self.reference.string
-    }
-}
-
-extension AttributedString {
-    
-    public typealias Element = AttributedString
-    
-    public typealias SubSequence = AttributedString
-    
-    public typealias Index = String.Index
-    
-    public func index(after i: AttributedString.Index) -> AttributedString.Index {
-        
-        return self.string.index(after: i)
-    }
-    
-    public subscript(position: AttributedString.Index) -> AttributedString {
-        
-        return self[position..<position]
-    }
-    
-    public var startIndex: AttributedString.Index {
-        
-        return self.string.startIndex
-    }
-    
-    public var endIndex: AttributedString.Index {
-        
-        return self.string.endIndex
     }
 }
 
@@ -125,6 +63,76 @@ extension AttributedString {
         let r = self.string.startIndex..<endIndex
         
         return self[r]
+    }
+}
+
+extension AttributedString {
+    
+    private init(reference: NSAttributedString) {
+        
+        self.reference = NSMutableAttributedString(attributedString: reference)
+    }
+    
+    private init(string: String = "", nsAttributes: [NSAttributedStringKey: Any]? = nil) {
+        
+        self.reference = NSMutableAttributedString(string: string, attributes: nsAttributes)
+    }
+    
+    private mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<AttributedString.Index>) {
+        
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self.reference.setAttributes(attributes, range: nsRange)
+    }
+    
+    private mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
+        
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self.reference.addAttribute(key, value: value, range: nsRange)
+    }
+    
+    private mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
+        
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self.reference.addAttributes(attributes, range: nsRange)
+    }
+    
+    private mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
+        
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self.reference.removeAttribute(key, range: nsRange)
+    }
+}
+
+extension AttributedString {
+    
+    public typealias Element = AttributedString
+    
+    public typealias SubSequence = AttributedString
+    
+    public typealias Index = String.Index
+    
+    public func index(after i: AttributedString.Index) -> AttributedString.Index {
+        
+        return self.string.index(after: i)
+    }
+    
+    public subscript(position: AttributedString.Index) -> AttributedString {
+        
+        return self[position..<position]
+    }
+    
+    public var startIndex: AttributedString.Index {
+        
+        return self.string.startIndex
+    }
+    
+    public var endIndex: AttributedString.Index {
+        
+        return self.string.endIndex
     }
 }
 
