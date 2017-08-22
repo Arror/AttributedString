@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         var str2 = str1
         
         str2.add(attributes: .foregroundColor(.green), range: str2.startIndex..<str2.endIndex)
-        str2.remove(attribute: .font(.systemFont(ofSize: 12)), range: str2.startIndex..<str2.endIndex)
+        str2.remove(attribute: .font, range: str2.startIndex..<str2.endIndex)
         
         self.label1.attributedText = str1 as NSAttributedString
         self.label2.attributedText = str2 as NSAttributedString

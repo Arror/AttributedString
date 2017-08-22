@@ -10,6 +10,78 @@ import UIKit
 
 public enum Attribute {
     
+    public enum Key {
+        
+        case font
+        case paragraphStyle
+        case foregroundColor
+        case backgroundColor
+        case ligature
+        case kern
+        case strikethroughStyle
+        case underlineStyle
+        case strokeColor
+        case strokeWidth
+        case shadow
+        case textEffect
+        case attachment
+        case link
+        case baselineOffset
+        case underlineColor
+        case strikethroughColor
+        case obliqueness
+        case expansion
+//        case writingDirection
+//        case verticalGlyphForm
+        
+        var nsKey: NSAttributedStringKey {
+            switch self {
+            case .font:
+                return .font
+            case .paragraphStyle:
+                return .paragraphStyle
+            case .foregroundColor:
+                return .foregroundColor
+            case .backgroundColor:
+                return .backgroundColor
+            case .ligature:
+                return .ligature
+            case .kern:
+                return .kern
+            case .strikethroughStyle:
+                return .strikethroughStyle
+            case .underlineStyle:
+                return .underlineStyle
+            case .strokeColor:
+                return .strokeColor
+            case .strokeWidth:
+                return .strokeWidth
+            case .shadow:
+                return .shadow
+            case .textEffect:
+                return .textEffect
+            case .attachment:
+                return .attachment
+            case .link:
+                return .link
+            case .baselineOffset:
+                return .baselineOffset
+            case .underlineColor:
+                return .underlineColor
+            case .strikethroughColor:
+                return .strikethroughColor
+            case .obliqueness:
+                return .obliqueness
+            case .expansion:
+                return .expansion
+//            case .writingDirection:
+//                return .writingDirection
+//            case .verticalGlyphForm:
+//                return .verticalGlyphForm
+            }
+        }
+    }
+    
     case font(UIFont)
     case paragraphStyle(NSParagraphStyle)
     case foregroundColor(UIColor)
@@ -32,7 +104,7 @@ public enum Attribute {
 //    case writingDirection(Any)
 //    case verticalGlyphForm(Any)
     
-    var key: NSAttributedStringKey {
+    var key: Attribute.Key {
         switch self {
         case .font:
             return .font
@@ -134,7 +206,7 @@ extension Collection where Self.Element == Attribute {
         var dict: [NSAttributedStringKey: Any] = [:]
         
         self.forEach { attribute in
-            dict[attribute.key] = attribute.value
+            dict[attribute.key.nsKey] = attribute.value
         }
         
         return dict

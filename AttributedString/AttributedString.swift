@@ -31,11 +31,11 @@ public struct AttributedString: Collection {
         self = self.reference._bridgeToSwift_addAttributes(attributes.nsAttributes, range: nsRange)
     }
     
-    public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
+    public mutating func remove(attribute: Attribute.Key, range: Range<AttributedString.Index>) {
         
         let nsRange = NSRange(range, in: self.string)
         
-        self = self.reference._bridgeToSwift_removeAttribute(attribute.key, range: nsRange)
+        self = self.reference._bridgeToSwift_removeAttribute(attribute.nsKey, range: nsRange)
     }
     
     public var string: String {
