@@ -19,21 +19,21 @@ public struct AttributedString: Collection {
     
     public mutating func set(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
-        guard let nsRange = NSRange(range, in: self.string) else { return }
+        let nsRange = NSRange(range, in: self.string)
         
         self = self.reference.set(attributes: attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func add(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
-        guard let nsRange = NSRange(range, in: self.string) else { return }
+        let nsRange = NSRange(range, in: self.string)
         
         self = self.reference.add(attributes: attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
         
-        guard let nsRange = NSRange(range, in: self.string) else { return }
+        let nsRange = NSRange(range, in: self.string)
         
         self = self.reference.remove(attributeName: attribute.key, range: nsRange)
     }
@@ -48,7 +48,7 @@ extension AttributedString {
     
     public subscript(_ range: Range<String.Index>) -> AttributedString {
         
-        guard let nsRange = NSRange(range, in: self.string) else { fatalError("Out of Range.") }
+        let nsRange = NSRange(range, in: self.string)
         
         return AttributedString(reference: self.reference.attributedSubstring(from: nsRange))
     }

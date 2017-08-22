@@ -10,13 +10,13 @@ import Foundation
 
 extension NSRange {
     
-    init?(_ range: Range<String.Index>, in str: String) {
+    init(range: Range<String.Index>, in str: String) {
         
         guard
             let start = range.lowerBound.samePosition(in: str)?.encodedOffset,
             let end = range.upperBound.samePosition(in: str)?.encodedOffset, end >= start else {
                 
-                return nil
+                fatalError("Out of range.")
         }
         
         self.init(location: start, length: end - start)
