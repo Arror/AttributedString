@@ -22,6 +22,11 @@ public struct AttributedString: Collection {
         self.set(attributes: attributes.nsAttributes, range: range)
     }
     
+    public mutating func add(attributes: Attribute..., range: Range<AttributedString.Index>) {
+        
+        self.add(attributes: attributes.nsAttributes, range: range)
+    }
+    
     public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
         
         self.remove(attribute: attribute.key, range: range)
