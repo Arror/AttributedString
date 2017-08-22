@@ -19,17 +19,23 @@ public struct AttributedString: Collection {
     
     public mutating func set(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
-        self.set(attributes: attributes.nsAttributes, range: range)
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self = self.reference.set(attributes: attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func add(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
-        self.add(attributes: attributes.nsAttributes, range: range)
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self = self.reference.add(attributes: attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
         
-        self.remove(attribute: attribute.key, range: range)
+        guard let nsRange = NSRange(range, in: self.string) else { return }
+        
+        self = self.reference.remove(attributeName: attribute.key, range: nsRange)
     }
     
     public var string: String {
@@ -71,6 +77,36 @@ extension AttributedString {
     }
 }
 
+extension NSMutableAttributedString {
+    
+    func set(attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
+        
+        let copy = NSMutableAttributedString(attributedString: self)
+        
+        copy.setAttributes(attributes, range: range)
+        
+        return copy as AttributedString
+    }
+    
+    func add(attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
+        
+        let copy = NSMutableAttributedString(attributedString: self)
+        
+        copy.addAttributes(attributes, range: range)
+        
+        return copy as AttributedString
+    }
+    
+    func remove(attributeName name: NSAttributedStringKey, range: NSRange) -> AttributedString {
+        
+        let copy = NSMutableAttributedString(attributedString: self)
+        
+        copy.removeAttribute(name, range: range)
+        
+        return copy as AttributedString
+    }
+}
+
 extension AttributedString {
     
     private init(reference: NSAttributedString) {
@@ -81,34 +117,6 @@ extension AttributedString {
     private init(string: String = "", nsAttributes: [NSAttributedStringKey: Any]? = nil) {
         
         self.reference = NSMutableAttributedString(string: string, attributes: nsAttributes)
-    }
-    
-    private mutating func set(attributes: [NSAttributedStringKey: Any]?, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.setAttributes(attributes, range: nsRange)
-    }
-    
-    private mutating func add(attribute key: NSAttributedStringKey, value: Any, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.addAttribute(key, value: value, range: nsRange)
-    }
-    
-    private mutating func add(attributes: [NSAttributedStringKey: Any], range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.addAttributes(attributes, range: nsRange)
-    }
-    
-    private mutating func remove(attribute key: NSAttributedStringKey, range: Range<AttributedString.Index>) {
-        
-        guard let nsRange = NSRange(range, in: self.string) else { return }
-        
-        self.reference.removeAttribute(key, range: nsRange)
     }
 }
 
