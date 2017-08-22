@@ -21,21 +21,21 @@ public struct AttributedString: Collection {
         
         let nsRange = NSRange(range, in: self.string)
         
-        self = self.reference.set(attributes: attributes.nsAttributes, range: nsRange)
+        self = self.reference._bridgeToSwift_setAttributes(attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func add(attributes: Attribute..., range: Range<AttributedString.Index>) {
         
         let nsRange = NSRange(range, in: self.string)
         
-        self = self.reference.add(attributes: attributes.nsAttributes, range: nsRange)
+        self = self.reference._bridgeToSwift_addAttributes(attributes.nsAttributes, range: nsRange)
     }
     
     public mutating func remove(attribute: Attribute, range: Range<AttributedString.Index>) {
         
         let nsRange = NSRange(range, in: self.string)
         
-        self = self.reference.remove(attributeName: attribute.key, range: nsRange)
+        self = self.reference._bridgeToSwift_removeAttribute(attribute.key, range: nsRange)
     }
     
     public var string: String {
@@ -79,7 +79,7 @@ extension AttributedString {
 
 extension NSMutableAttributedString {
     
-    func set(attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
+    fileprivate func _bridgeToSwift_setAttributes(_ attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
         
         let copy = NSMutableAttributedString(attributedString: self)
         
@@ -88,7 +88,7 @@ extension NSMutableAttributedString {
         return copy as AttributedString
     }
     
-    func add(attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
+    fileprivate func _bridgeToSwift_addAttributes(_ attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
         
         let copy = NSMutableAttributedString(attributedString: self)
         
@@ -97,7 +97,7 @@ extension NSMutableAttributedString {
         return copy as AttributedString
     }
     
-    func remove(attributeName name: NSAttributedStringKey, range: NSRange) -> AttributedString {
+    fileprivate func _bridgeToSwift_removeAttribute(_ name: NSAttributedStringKey, range: NSRange) -> AttributedString {
         
         let copy = NSMutableAttributedString(attributedString: self)
         
