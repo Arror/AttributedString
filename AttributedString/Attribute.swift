@@ -45,7 +45,7 @@ public enum Attribute {
     case underlineStyle(Int)
     case strokeColor(UIColor)
     case strokeWidth(Float)
-    case shadow(NSShadow)
+    case shadow(Shadow)
     case textEffect(String)
     case attachment(NSTextAttachment)
     case link(URL)
