@@ -135,7 +135,7 @@ extension AttributedString {
     
     public subscript(position: AttributedString.Index) -> AttributedString {
         
-        return self[position..<position]
+        return self[position...position]
     }
     
     public var startIndex: AttributedString.Index {
