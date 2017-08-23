@@ -33,32 +33,6 @@ public enum Attribute {
         case expansion
 //        case writingDirection
 //        case verticalGlyphForm
-        
-        var nsKey: NSAttributedStringKey {
-            switch self {
-            case .font:                 return .font
-            case .paragraphStyle:       return .paragraphStyle
-            case .foregroundColor:      return .foregroundColor
-            case .backgroundColor:      return .backgroundColor
-            case .ligature:             return .ligature
-            case .kern:                 return .kern
-            case .strikethroughStyle:   return .strikethroughStyle
-            case .underlineStyle:       return .underlineStyle
-            case .strokeColor:          return .strokeColor
-            case .strokeWidth:          return .strokeWidth
-            case .shadow:               return .shadow
-            case .textEffect:           return .textEffect
-            case .attachment:           return .attachment
-            case .link:                 return .link
-            case .baselineOffset:       return .baselineOffset
-            case .underlineColor:       return .underlineColor
-            case .strikethroughColor:   return .strikethroughColor
-            case .obliqueness:          return .obliqueness
-            case .expansion:            return .expansion
-//            case .writingDirection:     return .writingDirection
-//            case .verticalGlyphForm:    return .verticalGlyphForm
-            }
-        }
     }
     
     case font(UIFont)
@@ -82,6 +56,9 @@ public enum Attribute {
     case expansion(Float)
 //    case writingDirection(Any)
 //    case verticalGlyphForm(Any)
+}
+
+extension Attribute {
     
     var key: Attribute.Key {
         switch self {
@@ -132,6 +109,35 @@ public enum Attribute {
         case .expansion(let v):             return v
 //        case .writingDirection(let v):      return v
 //        case .verticalGlyphForm(let v):     return v
+        }
+    }
+}
+
+extension Attribute.Key {
+    
+    var nsKey: NSAttributedStringKey {
+        switch self {
+        case .font:                 return .font
+        case .paragraphStyle:       return .paragraphStyle
+        case .foregroundColor:      return .foregroundColor
+        case .backgroundColor:      return .backgroundColor
+        case .ligature:             return .ligature
+        case .kern:                 return .kern
+        case .strikethroughStyle:   return .strikethroughStyle
+        case .underlineStyle:       return .underlineStyle
+        case .strokeColor:          return .strokeColor
+        case .strokeWidth:          return .strokeWidth
+        case .shadow:               return .shadow
+        case .textEffect:           return .textEffect
+        case .attachment:           return .attachment
+        case .link:                 return .link
+        case .baselineOffset:       return .baselineOffset
+        case .underlineColor:       return .underlineColor
+        case .strikethroughColor:   return .strikethroughColor
+        case .obliqueness:          return .obliqueness
+        case .expansion:            return .expansion
+//        case .writingDirection:     return .writingDirection
+//        case .verticalGlyphForm:    return .verticalGlyphForm
         }
     }
 }
