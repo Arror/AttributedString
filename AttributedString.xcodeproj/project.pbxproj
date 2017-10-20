@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		704926F71F99953000DD915D /* Regular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704926F61F99953000DD915D /* Regular.swift */; };
 		709048BF1F4DBD300007F77F /* ParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709048BE1F4DBD300007F77F /* ParagraphStyle.swift */; };
 		709048C11F4DBD4E0007F77F /* TextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709048C01F4DBD4E0007F77F /* TextAttachment.swift */; };
 		70C8F9AE1F443CB9002AF9E1 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		704926F61F99953000DD915D /* Regular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regular.swift; sourceTree = "<group>"; };
 		709048BE1F4DBD300007F77F /* ParagraphStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphStyle.swift; sourceTree = "<group>"; };
 		709048C01F4DBD4E0007F77F /* TextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAttachment.swift; sourceTree = "<group>"; };
 		70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				70D713591F36B6AF00E3EAA1 /* AttributedString.h */,
 				70D713611F36B6FE00E3EAA1 /* AttributedString.swift */,
 				70C8F9AD1F443CB9002AF9E1 /* Attribute.swift */,
+				704926F61F99953000DD915D /* Regular.swift */,
 				70D8CD231F376072008C276C /* Range.swift */,
 				70D7135A1F36B6AF00E3EAA1 /* Info.plist */,
 				70EDC70B1F4D9C6B00ED64D6 /* Shadow.swift */,
@@ -154,6 +157,7 @@
 			files = (
 				70C8F9AE1F443CB9002AF9E1 /* Attribute.swift in Sources */,
 				70EDC70C1F4D9C6B00ED64D6 /* Shadow.swift in Sources */,
+				704926F71F99953000DD915D /* Regular.swift in Sources */,
 				70D713621F36B6FE00E3EAA1 /* AttributedString.swift in Sources */,
 				70F06F5C1F96E505006DB2C1 /* UIExtension.swift in Sources */,
 				709048BF1F4DBD300007F77F /* ParagraphStyle.swift in Sources */,

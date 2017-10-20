@@ -31,11 +31,25 @@ public struct AttributedString: Collection {
         self = self.reference._bridgeToSwift_addAttributes(attributes.nsAttributes, range: nsRange)
     }
     
+    public mutating func set(attributes: Attribute..., range: Range<AttributedString.Index>, regular: Regular) throws {
+        
+        let nsRange = NSRange(range, in: self.string)
+        
+        self = try self.reference._bridgeToSwift_setAttributes(attributes.nsAttributes, range: nsRange, regular: regular)
+    }
+    
     public mutating func remove(attribute: Attribute.Key, range: Range<AttributedString.Index>) {
         
         let nsRange = NSRange(range, in: self.string)
         
         self = self.reference._bridgeToSwift_removeAttribute(attribute.nsKey, range: nsRange)
+    }
+    
+    public mutating func add(attributes: Attribute..., range: Range<AttributedString.Index>, regular: Regular) throws {
+        
+        let nsRange = NSRange(range, in: self.string)
+        
+        self = try self.reference._bridgeToSwift_addAttributes(attributes.nsAttributes, range: nsRange, regular: regular)
     }
     
     public var string: String {
@@ -78,6 +92,35 @@ extension AttributedString {
 }
 
 extension NSMutableAttributedString {
+    
+    private func matchedRangesIn(range: NSRange, regular: Regular) throws -> [NSRange] {
+        
+        let regex = try NSRegularExpression(regular: regular)
+        
+        return regex.matches(in: self.string, options: regular.matchingOptions, range: range).map { $0.range }
+    }
+    
+    fileprivate func _bridgeToSwift_setAttributes(_ attributes: [NSAttributedStringKey: Any], range: NSRange, regular: Regular) throws -> AttributedString {
+        
+        let ranges = try self.matchedRangesIn(range: range, regular: regular)
+        
+        let copy = NSMutableAttributedString(string: self.string)
+        
+        ranges.forEach { copy.addAttributes(attributes, range: $0) }
+        
+        return copy as AttributedString
+    }
+    
+    fileprivate func _bridgeToSwift_addAttributes(_ attributes: [NSAttributedStringKey: Any], range: NSRange, regular: Regular) throws -> AttributedString {
+        
+        let ranges = try self.matchedRangesIn(range: range, regular: regular)
+        
+        let copy = NSMutableAttributedString(attributedString: self)
+        
+        ranges.forEach { copy.addAttributes(attributes, range: $0) }
+        
+        return copy as AttributedString
+    }
     
     fileprivate func _bridgeToSwift_setAttributes(_ attributes: [NSAttributedStringKey: Any], range: NSRange) -> AttributedString {
         
@@ -189,6 +232,14 @@ extension AttributedString: CustomStringConvertible, CustomDebugStringConvertibl
     public var debugDescription: String {
         
         return self.reference.debugDescription
+    }
+}
+
+extension AttributedString {
+    
+    public var fullRange: Range<AttributedString.Index> {
+        
+        return self.startIndex..<self.endIndex
     }
 }
 
