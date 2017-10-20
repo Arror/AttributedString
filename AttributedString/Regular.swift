@@ -13,6 +13,13 @@ public struct Regular {
     let pattern: String
     let options: NSRegularExpression.Options
     let matchingOptions: NSRegularExpression.MatchingOptions
+    
+    public init(pattern: String, options: NSRegularExpression.Options, matchingOptions: NSRegularExpression.MatchingOptions) {
+        
+        self.pattern = pattern
+        self.options = options
+        self.matchingOptions = matchingOptions
+    }
 }
 
 extension NSRegularExpression {
