@@ -25,8 +25,8 @@ class ViewController: UIViewController {
         
         str2.add(attributes: .font(.systemFont(ofSize: 14.0)), range: str2.fullRange)
         
-        let mailRegular = Regular(pattern: "([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)", options: .caseInsensitive, matchingOptions: [])
-        let urlRegular = Regular(pattern: "http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?", options: .caseInsensitive, matchingOptions: [])
+        let mailRegular = Regular(pattern: "([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)", options: .caseInsensitive)
+        let urlRegular = Regular(pattern: "http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?", options: .caseInsensitive)
         
         try! str2.add(attributes: .font(.systemFont(ofSize: 18.0)), .foregroundColor(.red), range: str2.fullRange, regular: mailRegular)
         try! str2.add(attributes: .font(.systemFont(ofSize: 18.0)), .foregroundColor(.green), range: str2.fullRange, regular: urlRegular)

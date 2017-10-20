@@ -14,7 +14,7 @@ public struct Regular {
     let options: NSRegularExpression.Options
     let matchingOptions: NSRegularExpression.MatchingOptions
     
-    public init(pattern: String, options: NSRegularExpression.Options, matchingOptions: NSRegularExpression.MatchingOptions) {
+    public init(pattern: String, options: NSRegularExpression.Options = [], matchingOptions: NSRegularExpression.MatchingOptions = []) {
         
         self.pattern = pattern
         self.options = options
