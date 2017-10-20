@@ -31,8 +31,6 @@ public enum Attribute {
         case strikethroughColor
         case obliqueness
         case expansion
-//        case writingDirection
-//        case verticalGlyphForm
     }
     
     case font(UIFont)
@@ -45,7 +43,7 @@ public enum Attribute {
     case underlineStyle(Int)
     case strokeColor(UIColor)
     case strokeWidth(Float)
-    case shadow(Shadow)
+    case shadow(NSShadow)
     case textEffect(String)
     case attachment(NSTextAttachment)
     case link(URL)
@@ -54,8 +52,6 @@ public enum Attribute {
     case strikethroughColor(UIColor)
     case obliqueness(Float)
     case expansion(Float)
-//    case writingDirection(Any)
-//    case verticalGlyphForm(Any)
 }
 
 extension Attribute {
@@ -81,8 +77,6 @@ extension Attribute {
         case .strikethroughColor:   return .strikethroughColor
         case .obliqueness:          return .obliqueness
         case .expansion:            return .expansion
-//        case .writingDirection:     return .writingDirection
-//        case .verticalGlyphForm:    return .verticalGlyphForm
         }
     }
     
@@ -107,8 +101,6 @@ extension Attribute {
         case .strikethroughColor(let v):    return v
         case .obliqueness(let v):           return v
         case .expansion(let v):             return v
-//        case .writingDirection(let v):      return v
-//        case .verticalGlyphForm(let v):     return v
         }
     }
 }
