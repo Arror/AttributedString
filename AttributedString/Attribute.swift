@@ -128,8 +128,6 @@ extension Attribute.Key {
         case .strikethroughColor:   return .strikethroughColor
         case .obliqueness:          return .obliqueness
         case .expansion:            return .expansion
-//        case .writingDirection:     return .writingDirection
-//        case .verticalGlyphForm:    return .verticalGlyphForm
         }
     }
 }
